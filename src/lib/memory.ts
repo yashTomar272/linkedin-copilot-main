@@ -11,10 +11,10 @@ const STOP = new Set(
 );
 
 export function tokenize(text: string): string[] {
-  return text
+    return text
     .toLowerCase()
     .replace(/https?:\/\/\S+/g, " ")
-    .replace(/[^a-z0-9#+\s]/g, " ")
+    .replace(/[^\p{L}\p{M}\p{N}#+\s]/gu, " ")
     .split(/\s+/)
     .filter((w) => w.length > 2 && !STOP.has(w));
 }
